@@ -2,17 +2,20 @@ package study.gui
 
 import scala.swing._
 import scala.collection.mutable.ListBuffer
-import java.awt.{AlphaComposite, Graphics, Color, Toolkit}
+import java.awt._
 import scala.swing.event.ButtonClicked
-import javax.swing.{JComponent, JPanel}
-import java.awt
+import scala.swing.Button
+import scala.swing.Component
+import scala.swing.Font
+import scala.swing.ScrollPane
+import java.awt.Color
 
 case class DataItem(id: Long, name: String)
 
 object Gui extends SimpleSwingApplication {
 
   val items = ListBuffer[DataItem]()
-  (1 to 10).foreach(i => items += DataItem(i, "item %s" format i))
+  (1 to 20).foreach(i => items += DataItem(i, "item %s" format i))
 
   val testModel = new LabsTableModel(Array("Id", "Name")) {
     def getRowCount: Int = items.length
@@ -43,9 +46,13 @@ object Gui extends SimpleSwingApplication {
       add(testButton, BorderPanel.Position.South)
     }
     contents = panel
+    size = new Dimension(600, 400)
   }
 
   val glass = new Component {
+
+    val bigFont = new Font("Sans Serif", Font.BOLD, 72)
+    peer.setFont(bigFont)
     override def paint(g: _root_.scala.swing.Graphics2D) {
       super.paint(g)
 
@@ -54,6 +61,8 @@ object Gui extends SimpleSwingApplication {
       g.setColor(Color.orange)
       g.fillOval(50, 50, 150, 150)
       g.setColor(Color.red)
+
+      //g.setFont(font)
       g.drawString("Demo", 50, 50)
     }
   }
