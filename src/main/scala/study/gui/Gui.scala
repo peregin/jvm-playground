@@ -52,7 +52,7 @@ object Gui extends SimpleSwingApplication {
     size = new Dimension(600, 400)
   }
 
-  val mark = new Watermark("Demo", .2f, Color.red)
+  val mark = new Watermark("Demo", .1f, Color.red)
   frame.peer.setGlassPane(mark.peer)
   frame.peer.getGlassPane.setVisible(true)
 
