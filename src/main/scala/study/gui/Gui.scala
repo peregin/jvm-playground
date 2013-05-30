@@ -5,13 +5,8 @@ import scala.collection.mutable.ListBuffer
 import java.awt._
 import scala.swing.event.ButtonClicked
 import scala.swing.Button
-import scala.swing.Component
-import scala.swing.Font
 import scala.swing.ScrollPane
 import java.awt.Color
-import java.awt.geom.{RoundRectangle2D, Area}
-import javax.swing.Timer
-import java.awt.event.{ActionEvent, ActionListener}
 
 case class DataItem(id: Long, name: String)
 
