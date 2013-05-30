@@ -2,8 +2,10 @@ package study.gui
 
 import scala.swing._
 import scala.collection.mutable.ListBuffer
-import java.awt.Toolkit
+import java.awt.{Graphics, Color, Toolkit}
 import scala.swing.event.ButtonClicked
+import javax.swing.{JComponent, JPanel}
+import java.awt
 
 case class DataItem(id: Long, name: String)
 
@@ -34,14 +36,24 @@ object Gui extends SimpleSwingApplication {
 
   val frame = new MainFrame {
     title = "Study"
-    contents = new BorderPanel {
+    val panel = new BorderPanel {
 
-      border = Swing.EmptyBorder(10)
-      import BorderPanel.Position._
-      add(tableScroll, Center)
-      add(testButton, South)
+      border = Swing.EmptyBorder(20)
+      add(tableScroll, BorderPanel.Position.Center)
+      add(testButton, BorderPanel.Position.South)
+    }
+    contents = panel
+  }
+
+  val glass = new Component {
+    override def paint(g: _root_.scala.swing.Graphics2D) {
+      super.paint(g)
+      g.setColor(Color.orange)
+      g.fillOval(50, 50, 150, 150)
     }
   }
+  frame.peer.setGlassPane(glass.peer)
+  frame.peer.getGlassPane.setVisible(true)
 
   centerWindowToScreen(frame)
 
