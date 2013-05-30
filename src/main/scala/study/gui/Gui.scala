@@ -2,7 +2,7 @@ package study.gui
 
 import scala.swing._
 import scala.collection.mutable.ListBuffer
-import java.awt.{Graphics, Color, Toolkit}
+import java.awt.{AlphaComposite, Graphics, Color, Toolkit}
 import scala.swing.event.ButtonClicked
 import javax.swing.{JComponent, JPanel}
 import java.awt
@@ -48,6 +48,9 @@ object Gui extends SimpleSwingApplication {
   val glass = new Component {
     override def paint(g: _root_.scala.swing.Graphics2D) {
       super.paint(g)
+
+      g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .2f))
+
       g.setColor(Color.orange)
       g.fillOval(50, 50, 150, 150)
       g.setColor(Color.red)
