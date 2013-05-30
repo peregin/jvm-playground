@@ -50,6 +50,8 @@ object Gui extends SimpleSwingApplication {
       super.paint(g)
       g.setColor(Color.orange)
       g.fillOval(50, 50, 150, 150)
+      g.setColor(Color.red)
+      g.drawString("Demo", 50, 50)
     }
   }
   frame.peer.setGlassPane(glass.peer)
