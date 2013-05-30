@@ -9,6 +9,7 @@ import scala.swing.Component
 import scala.swing.Font
 import scala.swing.ScrollPane
 import java.awt.Color
+import java.awt.geom.{RoundRectangle2D, Area}
 
 case class DataItem(id: Long, name: String)
 
@@ -51,7 +52,7 @@ object Gui extends SimpleSwingApplication {
 
   val glass = new Component {
 
-    val bigFont = new Font("Sans Serif", Font.BOLD, 72)
+    val bigFont = new Font("Sans Serif", Font.BOLD, 98)
     peer.setFont(bigFont)
     override def paint(g: _root_.scala.swing.Graphics2D) {
       super.paint(g)
@@ -62,8 +63,23 @@ object Gui extends SimpleSwingApplication {
       g.fillOval(50, 50, 150, 150)
       g.setColor(Color.red)
 
-      //g.setFont(font)
-      g.drawString("Demo", 50, 50)
+      g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
+
+      val fm = g.getFontMetrics
+      val msg = "Demo"
+      val msgWidth = fm.stringWidth(msg)
+      val msgAscent = fm.getAscent
+      val msgX = peer.getWidth / 2 - msgWidth / 2
+      val msgY = peer.getHeight / 2 + msgAscent / 2
+      g.drawString(msg, msgX, msgY)
+
+      val roundX = msgX - 20
+      val roundY = msgY - msgAscent
+      val roundW = msgWidth + 40
+      val roundH = fm.getHeight
+      val area = new Area(new RoundRectangle2D.Float(roundX, roundY, roundW, roundH, 20, 20))
+      g.setStroke(new BasicStroke(10))
+      g.draw(area)
     }
   }
   frame.peer.setGlassPane(glass.peer)
