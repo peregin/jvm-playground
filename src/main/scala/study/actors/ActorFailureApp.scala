@@ -28,9 +28,9 @@ object ActorFailureApp extends App {
   val system = ActorSystem("test-system")
 
 
-  def getStatus = true
+  def getMyStatus = true
 
-  val myActor = system.actorOf(Props(new WorkerActor(getStatus)), "myactor")
+  val myActor = system.actorOf(Props(new WorkerActor(getMyStatus)), "myactor")
 
   myActor ! DoSomething
   //println("reply %s" format Await.resultOrException(myActor ? DoSomething))
