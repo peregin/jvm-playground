@@ -9,15 +9,15 @@ object ActorFailureApp extends App {
 
   case object DoMess
 
-  class WorkerActor extends Actor {
+  class WorkerActor(getStatus: => Boolean) extends Actor {
     def receive = {
       case DoSomething => {
-        val message = "how do you do, sir? from thread %s" format Thread.currentThread.getName
+        val message = "how do you do, sir? status=%s, from thread %s, instance %s".format(getStatus, Thread.currentThread.getName, hashCode())
         println(message)
         sender ! message
       }
       case DoMess => {
-        val message = "boom, from thread %s" format Thread.currentThread.getName
+        val message = "boom, status=%s, from thread %s, instance %s".format(getStatus, Thread.currentThread.getName, hashCode())
         println(message)
         throw new IllegalStateException(message)
       }
@@ -27,7 +27,10 @@ object ActorFailureApp extends App {
 
   val system = ActorSystem("test-system")
 
-  val myActor = system.actorOf(Props[WorkerActor], "myactor")
+
+  def getStatus = true
+
+  val myActor = system.actorOf(Props(new WorkerActor(getStatus)), "myactor")
 
   myActor ! DoSomething
   //println("reply %s" format Await.resultOrException(myActor ? DoSomething))
