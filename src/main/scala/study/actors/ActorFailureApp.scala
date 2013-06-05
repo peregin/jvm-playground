@@ -1,11 +1,12 @@
 package study.actors
 
-import akka.actor.Actor
+import akka.actor.{Actor, Props, ActorSystem}
 
 
-class ActorFailureApp extends App {
+object ActorFailureApp extends App {
 
   case object DoSomething
+
   case object DoMess
 
   class WorkerActor extends Actor {
@@ -23,4 +24,29 @@ class ActorFailureApp extends App {
       case what => println("unknown request %s" format what)
     }
   }
+
+  val system = ActorSystem("test-system")
+
+  val myActor = system.actorOf(Props[WorkerActor], "myactor")
+
+  myActor ! DoSomething
+  //println("reply %s" format Await.resultOrException(myActor ? DoSomething))
+  myActor ! DoMess
+
+  myActor ! DoSomething
+  myActor ! DoMess
+  myActor ! DoMess
+  myActor ! DoMess
+  myActor ! DoMess
+  myActor ! DoMess
+  //println("reply %s" format Await.resultOrException(myActor ? DoSomething))
+  Thread.sleep(1000)
+
+  myActor ! DoSomething
+  myActor ! DoSomething
+  //println("reply %s" format Await.resultOrException(myActor ? DoSomething))
+  //println("reply %s" format Await.resultOrException(myActor ? DoSomething))
+
+  Thread.sleep(1000)
+  system.shutdown
 }
