@@ -8,14 +8,16 @@ import scala.swing.Button
 import scala.swing.ScrollPane
 import java.awt.Color
 
-case class DataItem(id: Long, name: String)
 
 object Gui extends SimpleSwingApplication {
 
-  val items = ListBuffer[DataItem]()
-  (1 to 20).foreach(i => items += DataItem(i, "item %s" format i))
-
   val testModel = new LabsTableModel(Array("Id", "Name")) {
+
+    case class DataItem(id: Long, name: String)
+
+    val items = ListBuffer[DataItem]()
+    (1 to 20).foreach(i => items += DataItem(i, "item %s" format i))
+
     def getRowCount: Int = items.length
 
     def getValueAt(rowIndex: Int, columnIndex: Int): AnyRef = {
