@@ -5,19 +5,31 @@ import akka.actor.{Actor, Props, ActorSystem}
 
 object ActorFailureApp extends App {
 
-  case object DoSomething
+  sealed trait AMessage
+  case object DoSomething extends AMessage
+  case object DoMess extends AMessage
 
-  case object DoMess
+  trait SuspendableActor extends Actor {
+    def isSuspended: Boolean
+    def process: PartialFunction[Any, Unit]
 
-  class WorkerActor(getStatus: => Boolean) extends Actor {
-    def receive = {
+    final def receive = {
+      case whatever if (!isSuspended) => process(whatever)
+    }
+  }
+
+  class WorkerActor(getSuspendedStatus: => Boolean) extends SuspendableActor {
+
+    def isSuspended = getSuspendedStatus
+
+    def process = {
       case DoSomething => {
-        val message = "how do you do, sir? status=%s, from thread %s, instance %s".format(getStatus, Thread.currentThread.getName, hashCode())
+        val message = "how do you do, sir? status=%s, from thread %s, instance %s".format(getSuspendedStatus, Thread.currentThread.getName, hashCode())
         println(message)
         sender ! message
       }
       case DoMess => {
-        val message = "boom, status=%s, from thread %s, instance %s".format(getStatus, Thread.currentThread.getName, hashCode())
+        val message = "boom, status=%s, from thread %s, instance %s".format(getSuspendedStatus, Thread.currentThread.getName, hashCode())
         println(message)
         throw new IllegalStateException(message)
       }
@@ -28,9 +40,9 @@ object ActorFailureApp extends App {
   val system = ActorSystem("test-system")
 
 
-  def getMyStatus = true
+  def getMySuspendedStatus = true
 
-  val myActor = system.actorOf(Props(new WorkerActor(getMyStatus)), "myactor")
+  val myActor = system.actorOf(Props(new WorkerActor(getMySuspendedStatus)), "myactor")
 
   myActor ! DoSomething
   //println("reply %s" format Await.resultOrException(myActor ? DoSomething))
