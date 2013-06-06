@@ -1,12 +1,13 @@
 package study.actors
 
 import akka.actor.{Actor, Props, ActorSystem}
+import java.util.concurrent.atomic.AtomicInteger
 
 
 object ActorFailureApp extends App {
 
   sealed trait AMessage
-  case object DoSomething extends AMessage
+  case class DoSomething(number: Int) extends AMessage
   case object DoMess extends AMessage
 
   trait SuspendableActor extends Actor {
@@ -23,8 +24,8 @@ object ActorFailureApp extends App {
     def isSuspended = getSuspendedStatus
 
     def process = {
-      case DoSomething => {
-        val message = "how do you do, sir? status=%s, from thread %s, instance %s".format(getSuspendedStatus, Thread.currentThread.getName, hashCode())
+      case DoSomething(number) => {
+        val message = "how do you do, sir(%d)? status=%s, from thread %s, instance %s".format(number, getSuspendedStatus, Thread.currentThread.getName, hashCode())
         println(message)
         sender ! message
       }
@@ -40,27 +41,23 @@ object ActorFailureApp extends App {
   val system = ActorSystem("test-system")
 
 
-  def getMySuspendedStatus = true
+  val counter = new AtomicInteger(0)
+  def getMySuspendedStatus = {
+    counter.incrementAndGet < 3
+  }
 
   val myActor = system.actorOf(Props(new WorkerActor(getMySuspendedStatus)), "myactor")
 
-  myActor ! DoSomething
-  //println("reply %s" format Await.resultOrException(myActor ? DoSomething))
+  myActor ! DoSomething(1)
   myActor ! DoMess
 
-  myActor ! DoSomething
+  myActor ! DoSomething(2)
+  myActor ! DoSomething(3)
   myActor ! DoMess
-  myActor ! DoMess
-  myActor ! DoMess
-  myActor ! DoMess
-  myActor ! DoMess
-  //println("reply %s" format Await.resultOrException(myActor ? DoSomething))
   Thread.sleep(1000)
 
-  myActor ! DoSomething
-  myActor ! DoSomething
-  //println("reply %s" format Await.resultOrException(myActor ? DoSomething))
-  //println("reply %s" format Await.resultOrException(myActor ? DoSomething))
+  myActor ! DoSomething(4)
+  myActor ! DoSomething(5)
 
   Thread.sleep(1000)
   system.shutdown
