@@ -10,7 +10,7 @@ out/
 .gwt/
 .mtj.tmp
 .scala_dependencies
-.idea/*
+.idea
 .idea_modules/*
 !.idea/runConfigurations
 !.idea/inspectionProfiles
