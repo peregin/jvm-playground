@@ -4,11 +4,11 @@ name := "scala-playground"
 
 version := "1.0.0"
 
-scalaVersion := "2.10.1"
+scalaVersion := "2.10.2"
 
 net.virtualvoid.sbt.graph.Plugin.graphSettings
 
-libraryDependencies += "org.scala-lang" % "scala-swing" % "2.10.1"
+libraryDependencies += "org.scala-lang" % "scala-swing" % "2.10.2"
 
 libraryDependencies += "com.typesafe.akka" % "akka-actor_2.10" % "2.1.4"
 
