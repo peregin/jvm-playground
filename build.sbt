@@ -18,3 +18,5 @@ libraryDependencies += "com.jgoodies" % "looks" % "2.2.0"
 
 libraryDependencies += "com.jgoodies" % "jgoodies-common" % "1.4.0"
 
+libraryDependencies += "org.json4s" % "json4s-jackson_2.10" % "3.2.4"
+
