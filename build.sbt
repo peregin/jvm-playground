@@ -8,6 +8,10 @@ version := "1.0.0"
 
 scalaVersion := "2.11.8"
 
+javacOptions ++= List("-source", "1.8", "-target", "1.8")
+
+scalacOptions ++= List("-target:jvm-1.8", "-feature", "-deprecation", "-language:implicitConversions", "utf-8")
+
 libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.11.8"
 
 libraryDependencies += "org.scala-lang" % "scala-swing" % "2.11.0-M7"
