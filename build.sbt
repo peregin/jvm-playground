@@ -1,14 +1,16 @@
+import sbt.Keys.libraryDependencies
+
 organization := "peregin.com"
 
 name := "scala-playground"
 
 version := "1.0.0"
 
-scalaVersion := "2.10.2"
+scalaVersion := "2.11.8"
 
-net.virtualvoid.sbt.graph.Plugin.graphSettings
+libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.11.8"
 
-libraryDependencies += "org.scala-lang" % "scala-swing" % "2.10.2"
+libraryDependencies += "org.scala-lang" % "scala-swing" % "2.11.0-M7"
 
 libraryDependencies += "com.typesafe.akka" % "akka-actor_2.10" % "2.1.4"
 

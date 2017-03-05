@@ -5,11 +5,10 @@ package study.macros
  */
 object TestApp extends App {
 
-  println("test started...")
+  println("test macros...")
 
-  import DemoMacros._
-  hoi()
-
-  val x = 1
-  debug("hello " + x)
+  // TODO: needs to be moved to a different module
+  //DemoMacros.hoi()
+  //val x = 1
+  //DemoMacros.debug("hello " + x)
 }
