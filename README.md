@@ -1,4 +1,12 @@
-scala-playground
-================
+Playground for JVM based languages
+==================================
 
-playing with scala 2.10.x, sbt, swing, akka->scala actors migration
+Examples with Scala, Java and Kotlin, experimenting with akka actors, swing, rx, etc.
+
+The project is configured with [sbt](https://github.com/sbt).
+The sources files are stored in the following directories: 
+```
+src/main/java
+src/main/kotlin
+src/main/scala
+```
