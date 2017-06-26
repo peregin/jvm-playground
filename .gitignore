@@ -22,3 +22,4 @@ gen-external-apklibs/
 gwt-unitCache/
 web/WEB-INF/classes/
 war/WEB-INF/classes/
+lib/kotlin*
