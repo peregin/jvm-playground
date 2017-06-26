@@ -12,6 +12,10 @@ javacOptions ++= List("-source", "1.8", "-target", "1.8")
 
 scalacOptions ++= List("-target:jvm-1.8", "-feature", "-deprecation", "-language:implicitConversions", "utf-8")
 
+seq(groovy.settings :_*)
+
+seq(testGroovy.settings :_*)
+
 libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.11.8"
 
 libraryDependencies += "org.scala-lang" % "scala-swing" % "2.11.0-M7"
