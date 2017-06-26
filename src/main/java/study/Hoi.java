@@ -1,4 +1,4 @@
-package jstudy;
+package study;
 
 import java.util.stream.IntStream;
 

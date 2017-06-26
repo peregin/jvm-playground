@@ -1,4 +1,4 @@
-package jstudy.rx;
+package study.rx;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
