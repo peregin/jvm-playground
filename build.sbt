@@ -4,7 +4,7 @@ organization := "peregin.com"
 
 name := "jvm-playground"
 
-version := "1.0.0"
+version := "1.0.0-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
