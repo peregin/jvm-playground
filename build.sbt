@@ -6,7 +6,7 @@ name := "jvm-playground"
 
 version := "1.0.0-SNAPSHOT"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.11"
 
 javacOptions ++= List("-source", "1.8", "-target", "1.8")
 
