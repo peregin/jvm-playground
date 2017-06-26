@@ -2,7 +2,7 @@ import sbt.Keys.libraryDependencies
 
 organization := "peregin.com"
 
-name := "scala-playground"
+name := "jvm-playground"
 
 version := "1.0.0"
 
