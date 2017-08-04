@@ -32,3 +32,7 @@ libraryDependencies += "org.json4s" % "json4s-jackson_2.10" % "3.2.4"
 
 libraryDependencies += "io.reactivex.rxjava2" % "rxjava" % "2.0.6"
 
+libraryDependencies += "org.apache.kafka" % "kafka_2.11" % "0.11.0.0"
+
+libraryDependencies += "io.reactivex" %% "rxscala" % "0.26.5"
+
