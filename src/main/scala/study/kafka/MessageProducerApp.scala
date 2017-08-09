@@ -10,10 +10,7 @@ object MessageProducerApp extends App with ConnectivityDetails {
 
   val props = new Properties()
   props.put("client.id", "KafkaProducerExample")
-  props.put("producer.type", "async")
-  props.put("acks", "all")
-  props.put("batch.size", "1")
-  props.put("linger.ms", "500")
+  props.put("linger.ms", "0")
   props.put("request.timeout.ms", "10000")
   props.put("bootstrap.servers", bootstrapServers)
   props.put("key.serializer", classOf[StringSerializer].getCanonicalName)
@@ -22,15 +19,14 @@ object MessageProducerApp extends App with ConnectivityDetails {
   val data = new ProducerRecord[String, String](testTopicName, "message")
 
   println("sending ...")
-  val fut = producer.send(data, new Callback {
+  producer.send(data, new Callback {
     override def onCompletion(metadata: RecordMetadata, exception: Exception) {
       println("completion")
       Option(exception).foreach(_.printStackTrace())
       Option(metadata).foreach(println)
     }
   })
-  producer.flush()
-  println(s"sent $fut")
+  println("sent")
 
   producer.close(1, TimeUnit.SECONDS)
   println("done")
