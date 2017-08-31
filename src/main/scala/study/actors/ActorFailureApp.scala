@@ -51,6 +51,7 @@ object ActorFailureApp extends App {
 
   import akka.pattern.ask
   import scala.concurrent.duration._
+  import scala.language.postfixOps
   implicit val timeout = Timeout(10 seconds)
 
   println("%s" format(myActor ? DoSomething(1)))

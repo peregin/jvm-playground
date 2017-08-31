@@ -19,11 +19,13 @@ object MessageConsumerApp extends App with ConnectivityDetails {
   consumer.subscribe(Collections.singletonList(testTopicName))
   println("consumer has been subscribed ...")
 
-  (1 to 100).foreach { i =>
+  var gameOver = false
+  while (!gameOver) {
     val records = consumer.poll(1000)
-    println(s"got ${records.count()} records ...")
+    //println(s"got ${records.count()} records ...")
     records.map { record =>
       println(s"got $record")
+      if (record.value() == "quit") gameOver = true
     }
   }
 

@@ -1,4 +1,4 @@
-package study.db
+package study.bb
 
 import com.datastax.driver.core.Cluster
 

@@ -16,7 +16,8 @@ object MessageProducerApp extends App with ConnectivityDetails {
   props.put("key.serializer", classOf[StringSerializer].getCanonicalName)
   props.put("value.serializer", classOf[StringSerializer].getCanonicalName)
   val producer = new KafkaProducer[String, String](props)
-  val data = new ProducerRecord[String, String](testTopicName, "message")
+  val data = new ProducerRecord[String, String](testTopicName, "message", "key")
+  //data.headers().add(new RecordHeader("state", "EUR/USD".getBytes))
 
   println("sending ...")
   producer.send(data, new Callback {
