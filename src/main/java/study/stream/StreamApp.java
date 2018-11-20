@@ -15,4 +15,9 @@ public class StreamApp {
     public static void log(IntStream s) {
         s.forEach(System.out::println);
     }
+
+    void test() {
+        int a = 0;
+        System.out.println(a);
+    }
 }
