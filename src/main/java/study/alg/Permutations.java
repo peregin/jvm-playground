@@ -17,9 +17,9 @@ public class Permutations {
         }
 
         for (int i = 0; i < n; i++) {
-            swap(a, i, n-1);
-            enumerate(a, n-1, k-1, accu);
-            swap(a, i, n-1);
+            swap(a, i, n - 1);
+            enumerate(a, n - 1, k - 1, accu);
+            swap(a, i, n - 1);
         }
     }
 
@@ -35,8 +35,8 @@ public class Permutations {
         List<String> result = new LinkedList();
         enumerate(A, A.length, B, result);
         int counter = 0;
-        for(String s: result) {
-            System.out.println("   "+s);
+        for (String s : result) {
+            System.out.println("   " + s);
             if (Integer.valueOf(s) < C && !s.startsWith("0")) {
                 System.out.println(s);
                 counter++;
@@ -45,10 +45,10 @@ public class Permutations {
         return counter;
     }
 
-    static public int solve(int[] A, int B, int C) {
+    static public int solve22(int[] A, int B, int C) {
         java.util.Set<String> res = new java.util.HashSet<String>();
         java.util.Set<Character> alphabet = new java.util.HashSet<Character>();
-        for(int c: A) {
+        for (int c : A) {
             String s = String.valueOf(c);
             alphabet.add(s.charAt(0));
         }
@@ -56,7 +56,7 @@ public class Permutations {
         if (from == 1) from = 0;
         long to = (long) Math.pow(10, B);
 
-        for (long i = from; i< to; i++) {
+        for (long i = from; i < to; i++) {
             String s = String.valueOf(i);
             if (s.length() != B) {
                 continue;
@@ -65,7 +65,7 @@ public class Permutations {
                 continue;
             }
             boolean valid = true;
-            for (int p = 0; p<s.length(); p++) {
+            for (int p = 0; p < s.length(); p++) {
                 char check = s.charAt(p);
                 if (!alphabet.contains(check)) {
                     valid = false;
@@ -82,14 +82,61 @@ public class Permutations {
         return res.size();
     }
 
-    public static void main(String args[])
-    {
-        //int[] in = {0, 1, 2, 5};
-        //int r = solve(in, 2, 21);
-        int[] in = {0};
-        int r = solve(in, 1, 5);
-        System.out.println("r = " + r);
+    // Given a set of digits (A) in sorted order, find how many numbers of length B are possible whose value is less than number C.
+    static public int solve(int[] A, int B, int C) {
+        if (B > String.valueOf(C).length()) {
+            return 0;
+        }
+        int size = A.length;
+        int counter = 0;
+        // A - digits
+        // B - base
+        int remainder = 0;
+        int num = 0;
+        int limit = (int) Math.pow(size, B);
+        //System.out.println("checking " + limit);
+        int numLength = 0;
+        for (int v = 0; v < limit; v++) {
+            // convert v to the digits
+            remainder = v;
+            num = 0;
+            numLength = 0;
+            for (int b = 0; b < B; b++) {
+                int base = (int) Math.pow(size, B - b - 1);
+                int base10 = (int) Math.pow(10, B - b - 1);
+                int ix = (remainder / base);
+                int digit = A[ix] * base10;
+                if (digit == 0 && b == 0 && B > 1) {
+                    break;
+                }
+                num += digit;
+                if (num > 0) {
+                    numLength++;
+                }
+                if (num >= C) {
+                    break;
+                }
+                remainder %= base;
+            }
+            //System.out.println(num + " - " + numLength + " -> " + v);
+            if (num < C && (numLength == B || B == 1)) {
+                //System.out.println(num);
+                counter++;
+            }
+        }
+        return counter;
+    }
 
+    public static void check(int[] in, int b, int c) {
+        int r = solve(in, b, c);
+        System.out.println("r = " + r);
+    }
+
+    public static void main(String args[]) {
+        check(new int[] {0, 1, 2, 5}, 2, 21); // 5
+        check(new int[] {0}, 1, 5); // 1
+        check(new int[] {0, 1, 5}, 1, 2); // 2
+        check(new int[] {0, 1, 2, 3, 4, 5, 7, 8, 9}, 9, 51822); // 0
     }
 
 }
