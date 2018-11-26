@@ -1,4 +1,4 @@
-package study.alg
+package study.alg.math
 
 object Palindrome extends App {
 

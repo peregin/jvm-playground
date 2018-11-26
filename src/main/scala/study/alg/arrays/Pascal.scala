@@ -1,5 +1,4 @@
-package study.alg
-
+package study.alg.arrays
 
 object Pascal extends App {
 

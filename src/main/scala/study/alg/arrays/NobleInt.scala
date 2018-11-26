@@ -1,5 +1,6 @@
-package study.alg
+package study.alg.arrays
 
+// number of elements greater than a given element, see 3 from 7, 3, 16, 10
 object NobleInt extends App {
 
   def solve(A: Array[Int]): Int = {

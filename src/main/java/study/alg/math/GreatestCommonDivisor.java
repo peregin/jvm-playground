@@ -1,4 +1,4 @@
-package study.alg;
+package study.alg.math;
 
 public class GreatestCommonDivisor {
 

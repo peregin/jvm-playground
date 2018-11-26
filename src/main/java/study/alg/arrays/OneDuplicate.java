@@ -1,4 +1,4 @@
-package study.alg;
+package study.alg.arrays;
 
 import java.util.Arrays;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package study.alg;
+package study.alg.math;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -84,10 +84,26 @@ public class Permutations {
 
     // Given a set of digits (A) in sorted order, find how many numbers of length B are possible whose value is less than number C.
     static public int solve(int[] A, int B, int C) {
-        if (B > String.valueOf(C).length()) {
+        int size = A.length;
+        if (size == 0) {
             return 0;
         }
-        int size = A.length;
+        int cLength = String.valueOf(C).length();
+        if (B > cLength) {
+            // no solution is possible
+            return 0;
+        }
+        if (B == 1 && cLength > 1) {
+            return size;
+        }
+        if (B < cLength) {
+            // all solutions are possible
+            if (Arrays.stream(A).anyMatch(i -> i == 0)) {
+                return (int) ((size - 1) * Math.pow(size, B - 1));
+            } else {
+                return (int) Math.pow(size, B);
+            }
+        }
         int counter = 0;
         // A - digits
         // B - base
@@ -134,6 +150,7 @@ public class Permutations {
 
     public static void main(String args[]) {
         check(new int[] {0, 1, 2, 5}, 2, 21); // 5
+        check(new int[] {0, 1, 2, 5}, 1, 123); // 4
         check(new int[] {0}, 1, 5); // 1
         check(new int[] {0, 1, 5}, 1, 2); // 2
         check(new int[] {0, 1, 2, 3, 4, 5, 7, 8, 9}, 9, 51822); // 0

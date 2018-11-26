@@ -1,5 +1,4 @@
-package study.alg
-
+package study.alg.math
 
 object TrailingZeros extends App {
 
