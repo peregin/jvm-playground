@@ -1,5 +1,7 @@
 package study.alg.trees;
 
+import java.io.PrintStream;
+
 public class TreeNode {
 
     int val;
@@ -14,5 +16,19 @@ public class TreeNode {
         val = x;
         this.left = left;
         this.right = right;
+    }
+
+    public void print(PrintStream out) {
+        print(out, this);
+    }
+
+    // preorder print
+    void print(PrintStream out, TreeNode n) {
+        if (n == null) {
+            return;
+        }
+        out.println(n.val);
+        print(out, n.left);
+        print(out, n.right);
     }
 }
