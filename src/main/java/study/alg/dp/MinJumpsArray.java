@@ -1,4 +1,4 @@
-package study.alg;
+package study.alg.dp;
 
 import java.util.ArrayList;
 

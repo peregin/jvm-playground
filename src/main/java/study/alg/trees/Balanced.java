@@ -1,5 +1,7 @@
 package study.alg.trees;
 
+import study.alg.TreeNode;
+
 public class Balanced {
 
     int height(TreeNode A) {

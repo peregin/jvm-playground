@@ -6,6 +6,25 @@ import java.util.List;
 
 public class Permutations {
 
+    private static void perm2(char[] a, int n) {
+        if (n == 1) {
+            System.out.println(new String(a));
+            return;
+        }
+        for (int i = 0; i < n; i++) {
+            swap1(a, i, n-1);
+            perm2(a, n-1);
+            swap1(a, i, n-1);
+        }
+    }
+    // swap the characters at indices i and j
+    private static void swap1(char[] a, int i, int j) {
+        char c = a[i];
+        a[i] = a[j];
+        a[j] = c;
+    }
+
+
 
     private static void enumerate(int[] a, int n, int k, List<String> accu) {
         if (k == 0) {

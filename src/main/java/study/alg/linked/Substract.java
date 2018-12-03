@@ -1,5 +1,7 @@
 package study.alg.linked;
 
+import study.alg.ListNode;
+
 import java.util.Arrays;
 import java.util.Stack;
 

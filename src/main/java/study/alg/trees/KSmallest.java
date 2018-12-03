@@ -1,6 +1,8 @@
 package study.alg.trees;
 
 
+import study.alg.TreeNode;
+
 import java.util.Stack;
 
 public class KSmallest {

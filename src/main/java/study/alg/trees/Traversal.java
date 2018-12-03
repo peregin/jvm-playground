@@ -1,5 +1,7 @@
 package study.alg.trees;
 
+import study.alg.TreeNode;
+
 import java.util.ArrayList;
 import java.util.Stack;
 

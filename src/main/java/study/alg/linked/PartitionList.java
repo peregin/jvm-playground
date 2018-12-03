@@ -1,5 +1,7 @@
 package study.alg.linked;
 
+import study.alg.ListNode;
+
 public class PartitionList {
 
     public ListNode partition(ListNode A, int B) {

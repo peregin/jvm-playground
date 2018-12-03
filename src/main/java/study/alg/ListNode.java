@@ -1,4 +1,4 @@
-package study.alg.linked;
+package study.alg;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,7 +6,8 @@ import java.util.List;
 public class ListNode {
     public int val;
     public ListNode next;
-    ListNode(int x) { val = x; next = null; }
+
+    public ListNode(int x) { val = x; next = null; }
 
 
     public static ListNode create(List<Integer> list) {
