@@ -1,5 +1,6 @@
 package study.alg;
 
+import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,5 +20,17 @@ public class ListNode {
             node = next;
         }
         return node;
+    }
+
+    public void print(PrintStream out) {
+        ListNode list = this;
+        while(list != null) {
+            out.print(list.val);
+            if (list.next != null) {
+                out.print(" -> ");
+            }
+            list = list.next;
+        }
+        out.println();
     }
 }
