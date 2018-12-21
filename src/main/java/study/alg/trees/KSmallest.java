@@ -14,11 +14,11 @@ public class KSmallest {
         TreeNode p = A;
         int result = 0;
 
-        while(!stack.isEmpty() || p!=null){
-            if(p!=null){
+        while (!stack.isEmpty() || p!=null) {
+            if (p!=null){
                 stack.push(p);
                 p = p.left;
-            }else{
+            } else {
                 TreeNode t = stack.pop();
                 B--;
                 if (B==0) result = t.val;

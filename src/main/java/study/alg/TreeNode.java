@@ -37,9 +37,9 @@ public class TreeNode {
         if (n == null) {
             return;
         }
-        printPreOrder(n.left, accu);
+        printInOrder(n.left, accu);
         accu.add(n.val);
-        printPreOrder(n.right, accu);
+        printInOrder(n.right, accu);
     }
 
     // preorder print
