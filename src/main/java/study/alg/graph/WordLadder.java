@@ -1,24 +1,12 @@
 package study.alg.graph;
 
+import study.alg.GraphNode;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class WordLadder {
-
-    class Node {
-        public final String word;
-        public final Node parent;
-        Node(String word, Node parent) {
-            this.word = word;
-            this.parent = parent;
-        }
-
-        @Override
-        public String toString() {
-            return word;
-        }
-    }
 
     int distance(String a, String b) {
         int an = a.length();
@@ -40,21 +28,21 @@ public class WordLadder {
             return ladder;
         }
         HashSet<String> dictS = new HashSet<>(dict);
-        Queue<Node> queue = new LinkedList<>();
-        queue.add(new Node(start, null));
+        Queue<GraphNode<String>> queue = new LinkedList<>();
+        queue.add(new GraphNode(start, null));
         HashSet<String> visited = new HashSet<>();
         while (!queue.isEmpty()) {
-            Node cur = ((LinkedList<Node>) queue).pop();
-            visited.add(cur.word);
+            GraphNode<String> cur = ((LinkedList<GraphNode<String>>) queue).pop();
+            visited.add(cur.data);
 
             // end condition
-            if (distance(cur.word, end) <= 1) {
+            if (distance(cur.data, end) <= 1) {
                 // found it
                 ArrayList<String> list = new ArrayList<>();
                 list.add(end);
-                Node c = cur;
+                GraphNode<String> c = cur;
                 while (c != null) {
-                    list.add(c.word);
+                    list.add(c.data);
                     c = c.parent;
                 }
                 // is longer than the shortest, noo need to search further
@@ -69,12 +57,12 @@ public class WordLadder {
             }
 
             // list adjacent words
-            List<String> adjacent = dictS.stream().filter(s -> distance(s, cur.word) == 1).collect(Collectors.toList());
+            List<String> adjacent = dictS.stream().filter(s -> distance(s, cur.data) == 1).collect(Collectors.toList());
             for (String a: adjacent) {
                 if (visited.contains(a)) {
                     continue;
                 }
-                queue.add(new Node(a, cur));
+                queue.add(new GraphNode(a, cur));
             }
         }
         return ladder;
@@ -89,33 +77,33 @@ public class WordLadder {
         if (start.compareTo(end) == 0) {
             return 1;
         }
-        Queue<Node> queue = new LinkedList<>();
-        queue.add(new Node(start, null));
+        Queue<GraphNode<String>> queue = new LinkedList<>();
+        queue.add(new GraphNode(start, null));
         HashSet<String> visited = new HashSet<>();
         while (!queue.isEmpty()) {
-            Node cur = ((LinkedList<Node>) queue).pop();
+            GraphNode<String> cur = ((LinkedList<GraphNode<String>>) queue).pop();
             // end condition
-            if (distance(cur.word, end) <= 1) {
+            if (distance(cur.data, end) <= 1) {
                 // found it
                 int len = 1;
-                Node c = cur;
+                GraphNode c = cur;
                 while (c != null) {
-                    System.out.println(c.word + " - " + len);
+                    System.out.println(c.data + " - " + len);
                     c = c.parent;
                     len++;
                 }
                 return len;
             }
 
-            visited.add(cur.word);
+            visited.add(cur.data);
 
             // list adjacent words
-            List<String> adjacent = dictV.stream().filter(s -> distance(s, cur.word) == 1).collect(Collectors.toList());
+            List<String> adjacent = dictV.stream().filter(s -> distance(s, cur.data) == 1).collect(Collectors.toList());
             for (String a: adjacent) {
                 if (visited.contains(a)) {
                     continue;
                 }
-                queue.add(new Node(a, cur));
+                queue.add(new GraphNode(a, cur));
             }
         }
         return 0;
