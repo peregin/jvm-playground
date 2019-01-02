@@ -29,8 +29,9 @@ public class Permutations {
     private static void enumerate(int[] a, int n, int k, List<String> accu) {
         if (k == 0) {
             StringBuffer sb = new StringBuffer();
-            for (int i = n; i < a.length; i++)
+            for (int i = n; i < a.length; i++) {
                 sb.append(a[i]);
+            }
             accu.add(sb.toString());
             return;
         }
