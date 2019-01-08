@@ -23,28 +23,31 @@ public class Duplicates {
 
     // can appear max twice
     public static int removeDuplicates(ArrayList<Integer> a) {
-        if (a.size() <= 2)
-            return a.size();
+        if (a.size() <= 2) return a.size();
 
-        int prev = 1; // point to previous
+        int removals = 0;
         int curr = 2; // point to current
 
         while (curr < a.size()) {
-            if (a.get(curr) == a.get(prev) && a.get(curr) == a.get(prev - 1)) {
-                curr++;
+            if (a.get(curr).equals(a.get(curr - 1)) && a.get(curr - 1).equals(a.get(curr - 2))) {
+                removals++;
+                a.remove(curr);
+                //System.out.println("after remove " + a + " curr " + curr + " < size " + a.size());
             } else {
-                prev++;
-                a.set(prev, a.get(curr));
                 curr++;
             }
         }
 
-        System.out.println(a);
-        return prev + 1;
+        return removals;
     }
 
     public static void main(String[] args) {
-        int res = removeDuplicates(new ArrayList<>(Arrays.asList(1000, 1000, 1000, 1000, 1001, 1002, 1003, 1003, 1004, 1010)));
+        //int res = removeDuplicates(new ArrayList<>(Arrays.asList(1000, 1000, 1000, 1000, 1001, 1002, 1003, 1003, 1004, 1010)));
+        ArrayList<Integer> in = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3));
+        int res = removeDuplicates(in);
+        //int res = removeDuplicates(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)));
+        //int res = removeDuplicates(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)));
         System.out.println("res is "+res);
+        System.out.println("arr is "+in);
     }
 }
