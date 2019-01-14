@@ -34,7 +34,7 @@ public class FibonacciSum {
 
     public static void main(String[] args) {
         FibonacciSum alg = new FibonacciSum();
-        int res = alg.fibsum(4);
+        int res = alg.fibsum(10);
         System.out.println("res = " + res);
     }
 }

@@ -33,7 +33,7 @@ public class MedianOfArrays {
 
     // DO NOT MODIFY BOTH THE LISTS
     // O(log(m+n)) // intentionally to recursive
-    // 1. find partition1,2 such way the all elem from left part1/2 are less than ritgh part1/2 and the size left1/2 = right/2
+    // 1. find partition1,2 such way the all elem from left part1/2 are less than right part1/2 and the size left1/2 = right/2
     // 2. calc 2 medians of a, b, if med a < med b drop first half a and second half b
     public static double findMedianSortedArrays(final List<Integer> a, final List<Integer> b) {
         if (a.size() > b.size()) {
