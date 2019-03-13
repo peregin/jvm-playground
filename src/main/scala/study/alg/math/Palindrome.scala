@@ -12,4 +12,6 @@ object Palindrome extends App {
   }
 
   check(Array(1, 2, 123, 121, 10000, 100001))
+
+  println(s"is palindrome number: ${isPalindrome(121)}")
 }
