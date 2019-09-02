@@ -54,4 +54,6 @@ dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-databind" % "2.8.
 
 dependencyOverrides += "com.fasterxml.jackson.module" % "jackson-module-scala_2.11" % "2.8.7"
 
+libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.2.28"
+
 
