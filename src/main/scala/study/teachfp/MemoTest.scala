@@ -1,4 +1,4 @@
-package study.scalaz
+package study.teachfp
 
 import java.util.concurrent.{CountDownLatch, Executors, ThreadFactory, TimeUnit}
 
