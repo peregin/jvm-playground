@@ -14,6 +14,8 @@ scalacOptions ++= List("-target:jvm-1.8", "-feature", "-deprecation", "-language
 
 val sparkVersion = "2.2.0"
 
+val scalazVersion = "7.2.28"
+
 libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.11.11"
 
 libraryDependencies += "org.scala-lang" % "scala-swing" % "2.11.0-M7"
@@ -54,6 +56,8 @@ dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-databind" % "2.8.
 
 dependencyOverrides += "com.fasterxml.jackson.module" % "jackson-module-scala_2.11" % "2.8.7"
 
-libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.2.28"
+libraryDependencies += "org.scalaz" %% "scalaz-core" % scalazVersion
+
+libraryDependencies += "org.scalaz" %% "scalaz-ioeffect" % "2.10.1"
 
 
