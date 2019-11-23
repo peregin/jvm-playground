@@ -1,9 +1,9 @@
 package study.teachfp
 
-import scalaz.{Bind, Cord, Kleisli, Show}
+import scalaz.{Cord, Kleisli, Show}
 
-import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 
 object FpTest extends App {
@@ -40,11 +40,7 @@ object FpTest extends App {
   println(car1.show)
 
   // make a serializer // json/google proto/thrift typeclasses 101
-
-  implicit val futureIntance = new Bind[Future] {
-    override def bind[A, B](fa: Future[A])(f: A => Future[B]): Future[B] = fa.flatMap(f)
-    override def map[A, B](fa: Future[A])(f: A => B): Future[B] = fa.map(f)
-  }
+  import FutureInstance._
 
   val listUsers: Kleisli[Future, Unit, Seq[User]] = Kleisli(_ => listUsersFromDb())
   val listCars: Kleisli[Future, Seq[User], Seq[Car]] = Kleisli(_ => listCarsFromDb())
