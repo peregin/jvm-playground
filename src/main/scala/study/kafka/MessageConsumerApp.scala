@@ -5,7 +5,7 @@ import java.util.{Collections, Properties}
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
 
-import collection.JavaConversions._
+import scala.jdk.CollectionConverters._
 
 object MessageConsumerApp extends App with ConnectivityDetails {
 
@@ -23,7 +23,7 @@ object MessageConsumerApp extends App with ConnectivityDetails {
   while (!gameOver) {
     val records = consumer.poll(1000)
     //println(s"got ${records.count()} records ...")
-    records.map { record =>
+    records.iterator().asScala.map { record =>
       println(s"got $record")
       if (record.value() == "quit") gameOver = true
     }

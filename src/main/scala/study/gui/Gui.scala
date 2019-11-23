@@ -9,7 +9,7 @@ import scala.swing.ScrollPane
 import java.awt.Color
 
 
-object Gui extends SimpleSwingApplication {
+object Gu1i extends SimpleSwingApplication {
 
   val testModel = new LabsTableModel(Array("Id", "Name")) {
 

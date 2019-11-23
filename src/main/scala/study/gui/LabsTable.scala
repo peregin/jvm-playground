@@ -15,7 +15,7 @@ abstract class LabsTableModel(val header: Array[String]) extends AbstractTableMo
 
 class LabsTable extends Table {
 
-  override lazy val peer: JXTable = new JXTable with SuperMixin
+  override lazy val peer: JXTable = new JXTable// with SuperMixin
 
   // disable column reordering
   peer.getTableHeader.setReorderingAllowed(false)
