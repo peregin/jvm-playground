@@ -7,7 +7,7 @@ object Palindrome extends App {
     s == s.reverse
   }
 
-  def check(test: Array[Int]) {
+  def check(test: Array[Int]): Unit = {
     test.foreach(i => println(s"$i is palindrome: ${isPalindrome(i)}"))
   }
 

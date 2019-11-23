@@ -8,7 +8,7 @@ object Hi extends App {
   //test("hello")
   test("hello_t_1234_bing_BONgola")
 
-  def test(in: String) {
+  def test(in: String): Unit = {
     pattern.findAllIn(in).matchData.foreach{m =>
       val gc = m.groupCount
       println(gc)

@@ -2,7 +2,7 @@
 
 object Main {
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
 
     val ln = "1496"
     val reversedDigits = ln.map(_.asDigit).reverse

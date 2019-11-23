@@ -17,7 +17,7 @@ object Socks {
     ar.groupBy(identity).values.map(_.length / 2).sum
   }
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
 
     val ar = "10 20 20 10 10 30 50 10 20".split(" ").map(_.trim.toInt)
     val n = ar.length

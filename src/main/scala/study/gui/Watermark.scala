@@ -14,10 +14,10 @@ class Watermark(msg: String, alpha: Float, paintColor: Color) extends Component 
 
   val timer = new Timer(500, this)
 
-  def actionPerformed(e: ActionEvent) {
+  def actionPerformed(e: ActionEvent): Unit = {
   }
 
-  override def paint(g: _root_.scala.swing.Graphics2D) {
+  override def paint(g: _root_.scala.swing.Graphics2D): Unit = {
     super.paint(g)
 
     g.setColor(paintColor)

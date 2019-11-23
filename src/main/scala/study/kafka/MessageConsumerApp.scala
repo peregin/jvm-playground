@@ -1,5 +1,6 @@
 package study.kafka
 
+import java.time.Duration
 import java.util.{Collections, Properties}
 
 import org.apache.kafka.clients.consumer.KafkaConsumer
@@ -21,7 +22,7 @@ object MessageConsumerApp extends App with ConnectivityDetails {
 
   var gameOver = false
   while (!gameOver) {
-    val records = consumer.poll(1000)
+    val records = consumer.poll(Duration.ofSeconds(1))
     //println(s"got ${records.count()} records ...")
     records.iterator().asScala.map { record =>
       println(s"got $record")

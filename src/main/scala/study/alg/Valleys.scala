@@ -22,7 +22,7 @@ object Valleys {
     valleys
   }
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
     val s = "UDDDUDUU"
     val result = countingValleys(s.length, s)
     println(s"valleys = $result")

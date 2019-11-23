@@ -1,7 +1,7 @@
 package study.kafka
 
+import java.time.Duration
 import java.util.Properties
-import java.util.concurrent.TimeUnit
 
 import org.apache.kafka.clients.producer._
 import org.apache.kafka.common.serialization.StringSerializer
@@ -21,7 +21,7 @@ object MessageProducerApp extends App with ConnectivityDetails {
 
   println("sending ...")
   producer.send(data, new Callback {
-    override def onCompletion(metadata: RecordMetadata, exception: Exception) {
+    override def onCompletion(metadata: RecordMetadata, exception: Exception): Unit = {
       println("completion")
       Option(exception).foreach(_.printStackTrace())
       Option(metadata).foreach(println)
@@ -29,6 +29,6 @@ object MessageProducerApp extends App with ConnectivityDetails {
   })
   println("sent")
 
-  producer.close(1, TimeUnit.SECONDS)
+  producer.close(Duration.ofSeconds(1))
   println("done")
 }
