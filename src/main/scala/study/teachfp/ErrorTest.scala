@@ -4,9 +4,7 @@ import scalaz.{-\/, EitherT, \/-}
 
 import scala.concurrent.Future
 import FutureInstance._
-import scalaz.syntax._
 import scalaz._
-import scalaz.std.either._
 import syntax.std.option._
 
 import scala.concurrent.ExecutionContext.Implicits.global
