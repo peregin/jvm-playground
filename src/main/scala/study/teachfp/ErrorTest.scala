@@ -1,11 +1,13 @@
 package study.teachfp
 
-import scalaz.{-\/, EitherT, \/-}
+import scalaz.{-\/, EitherT, \/-, \/}
 
 import scala.concurrent.Future
-import FutureInstance._
+import FutureInstances._
+import scalaz.syntax.std.ToOptionOps
+import scalaz.syntax.std.option._
+import scalaz.Scalaz._
 import scalaz._
-import syntax.std.option._
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -15,15 +17,12 @@ final object NoContent extends Err(204)
 
 case class Activity(name: String)
 
-object ErrorTest extends App {
+object ErrorTest extends App with ToOptionOps {
 
-  def find(name: String): EitherT[Future, NotFound, Activity] = for {
-    res <- EitherT{
-      lookup(name)
-        .map(
-          _.flatMap(ac => Some(ac)).toRightDisjunction(NotFound("what"))
-        )
-    }
+  def find(name: String): EitherT[Future, Err, Activity] = for {
+    res <- EitherT(
+      lookup(name).map(_.toRightDisjunction(NotFound("what")).widen).map(_.widen[Err, Activity]) //.map(_.asInstanceOf[Err \/ Activity])
+    )
   } yield res
 
   val test = find("uetliberg")

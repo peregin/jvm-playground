@@ -15,12 +15,10 @@ object MemoTest extends App {
   val max = 100000
   val max2 = max / 2
   val latch = new CountDownLatch(par)
-  implicit val ec = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(par, new ThreadFactory {
-    override def newThread(r: Runnable): Thread = {
-      val t = new Thread(r, "worker")
-      t.setDaemon(true)
-      t
-    }
+  implicit val ec = ExecutionContext.fromExecutor(Executors.newFixedThreadPool(par, (r: Runnable) => {
+    val t = new Thread(r, "worker")
+    t.setDaemon(true)
+    t
   }))
 
   1 to Int.MaxValue foreach { i =>

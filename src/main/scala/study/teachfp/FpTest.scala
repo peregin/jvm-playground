@@ -40,7 +40,7 @@ object FpTest extends App {
   println(car1.show)
 
   // make a serializer // json/google proto/thrift typeclasses 101
-  import FutureInstance._
+  import FutureInstances._
 
   val listUsers: Kleisli[Future, Unit, Seq[User]] = Kleisli(_ => listUsersFromDb())
   val listCars: Kleisli[Future, Seq[User], Seq[Car]] = Kleisli(_ => listCarsFromDb())
