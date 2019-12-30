@@ -12,7 +12,7 @@ javacOptions ++= List("-source", "1.8", "-target", "1.8")
 
 scalacOptions ++= List("-target:jvm-1.8", "-feature", "-deprecation", "-language:implicitConversions", "utf-8")
 
-val scalazVersion = "7.2.29"
+val scalazVersion = "7.2.30"
 
 libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value
 
@@ -28,13 +28,13 @@ libraryDependencies += "com.jgoodies" % "jgoodies-common" % "1.8.1"
 
 libraryDependencies += "org.json4s" %% "json4s-jackson" % "3.6.7"
 
-libraryDependencies += "io.reactivex.rxjava2" % "rxjava" % "2.2.14"
+libraryDependencies += "io.reactivex.rxjava2" % "rxjava" % "2.2.16"
+
+libraryDependencies += "io.reactivex" % "rxscala_2.12" % "0.27.0"
 
 libraryDependencies += "org.apache.kafka" % "kafka_2.12" % "2.3.1"
 
 libraryDependencies += "org.specs2" %% "specs2-core" % "4.8.1" % "test"
-
-libraryDependencies += "io.reactivex" % "rxscala_2.12" % "0.26.5"
 
 dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-core" % "2.8.7"
 
