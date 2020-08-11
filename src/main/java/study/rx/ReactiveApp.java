@@ -13,5 +13,7 @@ public class ReactiveApp {
                     sub.onComplete();
                 }
         );
+
+        myObservable.subscribe();
     }
 }
