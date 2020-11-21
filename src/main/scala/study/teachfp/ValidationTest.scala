@@ -4,7 +4,7 @@ import scalaz._
 import scalaz.Scalaz._
 //import scalaz.syntax.validation._
 
-object ValTest extends App {
+object ValidationTest extends App {
 
   type ExceptionValidation[T] = Validation[NonEmptyList[Exception], T]
 

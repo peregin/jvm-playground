@@ -5,15 +5,37 @@ import scalaz.{Cord, Kleisli, Show}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
+/**
+ * FP sessions + hands on
+ * ======================
+ *
+ * various manifestations of polymorphism
+ * type classes
+ * for comprehensions
+ * monoids
+ * functors, applicatives
+ * validations
+ * monads
+ * monad transformers (option, either)
+ * kleisli
+ * writer, state
+ * io effects / zio
+ * data structures (Nel, Nec, etc)
+ */
+object TeachFpTopics extends App {
 
-object FpTest extends App {
+  case class Pair[A](p1: A, p2: A) {
+    @inline final def map[B](f: A => B) = Pair(f(p1), f(p2))
+    @inline final def flatMap[B](f: A => Pair[B]) = f
+  }
+  val pair1 = Pair(1, 10)
+  val pair2 = Pair("a", "b")
 
-  // session 1 type classes
-  // session 2 monoids
-  // session 3 monads
-  // session 4 monad transformers
-  // session 5 kleisli
-  // session 6 io effects
+  val res = for {
+    a1 <- pair1
+    a2 <- pair2
+  } yield
+  println(s"pair res is = $res")
 
   // define some models used during the examples
   case class User(id: Long, name: String, age: Int)
@@ -43,6 +65,8 @@ object FpTest extends App {
   import FutureInstances._
 
   val listUsers: Kleisli[Future, Unit, Seq[User]] = Kleisli(_ => listUsersFromDb())
-  val listCars: Kleisli[Future, Seq[User], Seq[Car]] = Kleisli(_ => listCarsFromDb())
+  val listCars: Kleisli[Future, Seq[User], Seq[Car]] = Kleisli(users => listCarsFromDb())
   val pipeline = listUsers >==> listCars
+  val result = pipeline.run
+  println(s"res=$result")
 }
