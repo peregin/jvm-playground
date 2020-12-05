@@ -1,5 +1,6 @@
 package teach
 
+import scalaz.Cord.CordInterpolator.Cords
 import scalaz.{Cord, Kleisli, Show}
 import study.teachfp.FutureInstances
 
@@ -63,7 +64,7 @@ object TeachFpTopics extends App {
   def show[A: Show](a: A) = implicitly[Show[A]].show(a)
 
   implicit val carShow = new Show[Car] {
-    override def show(f: Car): Cord = Cord.stringToCord(f.name)
+    override def show(f: Car): Cord = Cord(f.name)
   }
 
   implicit class ShowOps[A: Show](a: A) {
