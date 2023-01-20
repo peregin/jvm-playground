@@ -6,7 +6,7 @@ public class KSmallest {
 
     // DO NOT MODIFY THE LIST. IT IS READ ONLY
     public static int kthsmallest(final List<Integer> A, int B) {
-        ArrayList<Integer> list = new ArrayList<Integer>(A);
+        ArrayList<Integer> list = new ArrayList<>(A);
         Collections.sort(list);
         //System.out.println(list);
         return list.get(B-1);

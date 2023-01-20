@@ -6,9 +6,9 @@ import java.util.Arrays;
 public class Check {
 
     ArrayList<ArrayList<Integer>> performOps(ArrayList<ArrayList<Integer>> A) {
-        ArrayList<ArrayList<Integer>> B = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> B = new ArrayList<>();
         for (int i = 0; i < A.size(); i++) {
-            B.add(new ArrayList<Integer>());
+            B.add(new ArrayList<>());
 
             for (int j = 0; j < A.get(i).size(); j++) {
                 B.get(i).add(0);
